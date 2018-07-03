@@ -1,0 +1,20 @@
+<section class="todo-list" *ngIf="!loading">
+    <ul>
+      <li *ngFor="let task of todoList">
+        <span>{{task.data.name}}</span>
+        <span>
+        <i *ngIf="task.data.done" class="fa fa-check" aria-hidden="true"></i>
+        <i *ngIf="!task.data.done" class="fa fa-times" aria-hidden="true"></i>
+        <i class="fa fa-trash" (click)="removeTask(task.id)"></i>
+      </span>
+      </li>
+    </ul>
+
+</section>
+<div class="loader" *ngIf="loading"></div>
+
+<form [formGroup]="form">
+  <label>Nazwa <input formControlName="name" /></label>
+  <label>Status <input formControlName="done" type="checkbox"/></label>
+</form>
+<button (click)="addTask(form)">Dodaj</button>
