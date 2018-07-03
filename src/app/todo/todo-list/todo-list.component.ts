@@ -14,12 +14,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
   todoList: any;
   form: FormGroup;
   loading = true;
-
+  deleteCursor = false;
   constructor(private todoService: TodoService, private fb: FormBuilder) {
 
   }
 
   addTask() {
+
     if (this.form.valid) {
       this.todoService.addTask(this.form.value).then(() => {
         this.form.get('name').patchValue('');
@@ -28,18 +29,21 @@ export class TodoListComponent implements OnInit, OnDestroy {
     }
   }
 
-  removeTask(id) {
-    this.todoService.remove(id).then((data) => {
+  removeTask(event) {
+
+    this.todoService.remove(event.dropData.id).then((data) => {
     });
   }
 
   updateTask(task) {
-    this.todoService.updateTask(task).then(data => {
 
+    this.todoService.updateTask(task).then(data => {
     });
   }
 
+
   ngOnInit() {
+
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       done: [false],

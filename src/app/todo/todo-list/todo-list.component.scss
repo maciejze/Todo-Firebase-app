@@ -7,9 +7,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
+  position: relative;
 }
+
+
+.droppable-area-right {
+  position: absolute;
+  right: 0;
+  top:0;
+  width: calc(50vw - 240px);
+  min-height: 100vh;
+
+}
+
+.droppable-area-left {
+  position: absolute;
+  left: 0;
+  top:0;
+  width: calc(50vw - 240px);
+  min-height: 100vh;
+}
+
+
 .todo-list {
   width: 480px;
+  position: relative;
+  z-index: 100;
   margin-bottom: 25px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   @media(max-width: $screen-xs) {
@@ -30,8 +54,15 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    background-color: white;
     &:nth-child(even) {
-      background-color: #dddddd29;
+      background-color: #f9f8f8
+    }
+    &.delete-cursor {
+      cursor: copy;
+    }
+
+    &.dragged {
 
     }
 
@@ -57,9 +88,6 @@
         background-color: transparent;
       }
 
-      .checkbox {
-
-      }
     }
 
     textarea {

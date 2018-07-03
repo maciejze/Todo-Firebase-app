@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     TodoRoutingModule,
     AngularFontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
-
+    FormsModule,
+    SharedModule
   ],
   providers: [
     TodoService
