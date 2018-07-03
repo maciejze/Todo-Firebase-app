@@ -2,7 +2,7 @@
 
 :host {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,14 +46,19 @@
       font-size: 20px;
       margin: 0;
       padding: 0;
-      flex-basis: 70%;
+      flex-basis: calc(100% - 30px);
 
       input {
         border: 0;
+        width: 100%;
         font-size: 20px;
         font-weight: 600;
         outline: none;
         background-color: transparent;
+      }
+
+      .checkbox {
+
       }
     }
 
