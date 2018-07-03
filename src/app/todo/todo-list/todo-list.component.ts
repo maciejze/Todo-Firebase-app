@@ -1,9 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodoService} from '../todo.service';
-import {TodoList} from '../todoList';
-import {AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
-import {Task} from '../Task';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,8 +12,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
   todoList: any;
   form: FormGroup;
   loading = true;
-  deleteCursor = false;
-  constructor(private todoService: TodoService, private fb: FormBuilder) {
+  elementRotation: number;
+  draggedTaskId: string;
+  constructor(private todoService: TodoService, private fb: FormBuilder, private sanitizer: DomSanitizer) {
 
   }
 
@@ -41,6 +40,19 @@ export class TodoListComponent implements OnInit, OnDestroy {
     });
   }
 
+  dragging(event, taskId) {
+    this.elementRotation = event.x / 8;
+    this.draggedTaskId = taskId;
+  }
+
+  getRotation(taskId) {
+    if (this.draggedTaskId === taskId) {
+      return this.sanitizer.bypassSecurityTrustStyle(`rotate(${this.elementRotation}deg)`);
+    } else {
+      return 0;
+    }
+
+  }
 
   ngOnInit() {
 

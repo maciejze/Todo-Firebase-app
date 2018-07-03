@@ -10,7 +10,11 @@
   overflow-x: hidden;
   position: relative;
 }
-
+.red-rectangle {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+}
 
 .droppable-area-right {
   position: absolute;
@@ -49,21 +53,17 @@
 
   li {
 
-    margin: 0;
-    padding: 15px 15px 15px 15px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    background-color: white;
-    &:nth-child(even) {
+    .task-container {
+      margin: 0;
+      padding: 15px 15px 15px 15px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background-color: white;
+
+    }
+    &:nth-child(even) .task-container {
       background-color: #f9f8f8
-    }
-    &.delete-cursor {
-      cursor: copy;
-    }
-
-    &.dragged {
-
     }
 
     form {
