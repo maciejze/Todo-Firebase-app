@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TodoService} from '../todo.service';
 import {TodoList} from '../todoList';
 import {AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
@@ -10,18 +10,22 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
   todoList: any;
   form: FormGroup;
   loading = true;
+
   constructor(private todoService: TodoService, private fb: FormBuilder) {
 
   }
 
   addTask() {
-    this.todoService.addTask(this.form.value).then(() => {
-      this.form.get('name').patchValue('');
-    });
+    if (this.form.valid) {
+      this.todoService.addTask(this.form.value).then(() => {
+        this.form.get('name').patchValue('');
+        this.form.get('description').patchValue('');
+      });
+    }
   }
 
   removeTask(id) {
@@ -29,18 +33,28 @@ export class TodoListComponent implements OnInit {
     });
   }
 
+  updateTask(task) {
+    this.todoService.updateTask(task).then(data => {
+
+    });
+  }
+
   ngOnInit() {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
-      done: [false]
+      done: [false],
+      description: ['']
     });
 
     this.todoService.getList().subscribe( next => {
       this.todoList = next;
       this.loading = false;
+
     });
   }
 
+  ngOnDestroy() {
 
+  }
 
 }

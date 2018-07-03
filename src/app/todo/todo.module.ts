@@ -6,15 +6,17 @@ import {TodoService} from './todo.service';
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../../environments/environment';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   imports: [
     CommonModule,
     TodoRoutingModule,
+    AngularFontAwesomeModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
+    FormsModule
+
   ],
   providers: [
     TodoService

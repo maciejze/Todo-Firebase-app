@@ -9,10 +9,13 @@
   align-items: center;
 }
 .todo-list {
-  width: 400px;
-  padding: 25px;
+  width: 480px;
   margin-bottom: 25px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  @media(max-width: $screen-xs) {
+    width: calc(100% - 10px);
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -22,27 +25,59 @@
 
   li {
 
-    padding: 0;
-    margin: 0 0 10px 0;
+    margin: 0;
+    padding: 15px 15px 15px 15px;
     display: flex;
     justify-content: space-between;
-    span {
+    flex-wrap: wrap;
+    &:nth-child(even) {
+      background-color: #dddddd29;
+
+    }
+
+    form {
+      width: 100%;
+      button {
+        float: right;
+      }
+    }
+
+    h1 {
       font-size: 20px;
+      margin: 0;
+      padding: 0;
+      flex-basis: 70%;
+
+      input {
+        border: 0;
+        font-size: 20px;
+        font-weight: 600;
+        outline: none;
+        background-color: transparent;
+      }
     }
 
-    .fa {
-      cursor: pointer;
-      color: $black;
-      padding-left: 15px;
+    textarea {
+      border: 0;
+      padding: 0;
+      width: 100%;
+      outline: none;
+      font-style: italic;
+      font-size: 14px;
+      color: $gray;
+      resize: none;
+      background-color: transparent;
     }
 
-    .fa-check {
-      color: $green;
+    p {
+      flex-basis: 100%;
+      font-style: italic;
+      font-size: 14px;
+      color: $gray;
+      margin: 10px 0;
     }
 
-    .fa-times {
-      color: $red;
-    }
+
 
   }
 

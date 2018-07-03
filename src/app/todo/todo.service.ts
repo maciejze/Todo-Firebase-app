@@ -31,8 +31,13 @@ export class TodoService {
   addTask(task: Task) {
     return this.todoList.add({
       name: task.name,
-      done: task.done
+      done: task.done,
+      description: task.description
     });
+  }
+
+  updateTask(task) {
+    return this.todoList.doc(task.id).update(task.data);
   }
 
   remove(id) {

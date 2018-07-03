@@ -1,21 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body {
   margin: 0;
   padding: 0;
+
 }
 
 * {
   box-sizing: border-box;
   color: $black;
+  font-family: $roboto;
 }
 
 button {
+  cursor: pointer;
   background-color: white;
-  border: 1px solid $black;
-  border-radius: 4px;
-  padding: 5px 15px;
+  border: 0;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 25px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  outline:none;
+  transition: 0.3s ease-in-out all;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: no-drop;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
 }
 
 .loader {
@@ -30,4 +48,38 @@ button {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+.checkbox {
+  border: 2px solid $gray;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .fa {
+    cursor: pointer;
+    color: $black;
+    font-size: 15px;
+    opacity: 0;
+    transition: 0.3s ease-in-out all;
+  }
+
+  .fa-check {
+    color: $green;
+  }
+  input {
+    display: none;
+  }
+
+  input:checked + .fa {
+    opacity: 1;
+  }
+
+
+
 }
