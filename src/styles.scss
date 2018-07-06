@@ -80,6 +80,21 @@ button {
     opacity: 1;
   }
 
+}
 
+.winkel-calendar {
+  .wc-date-container {
+    border: 0 !important;
+    height: 100px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > i {
+      color: $gray !important;
+      float: none !important;
+      font-size: 40px !important;
+
+    }
+  }
 
 }

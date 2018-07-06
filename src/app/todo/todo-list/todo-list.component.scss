@@ -20,7 +20,7 @@
   position: absolute;
   right: 0;
   top:0;
-  width: calc(50vw - 240px);
+  width: calc(50vw - 300px);
   min-height: 100vh;
 
 }
@@ -29,13 +29,13 @@
   position: absolute;
   left: 0;
   top:0;
-  width: calc(50vw - 240px);
+  width: calc(50vw - 300px);
   min-height: 100vh;
 }
 
 
 .todo-list {
-  width: 480px;
+  width: 600px;
   position: relative;
   z-index: 100;
   margin-bottom: 25px;
@@ -61,6 +61,50 @@
       flex-wrap: wrap;
       background-color: white;
 
+      .date {
+        flex-basis: 100px;
+        height: 100px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-align: center;
+        position: relative;
+
+        angular2-date-picker {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          transition: 0.3s ease-in-out all;
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        &:hover {
+          angular2-date-picker {
+            opacity: 1;
+          }
+        }
+
+        h2 {
+          margin: 30px 0 0 0;
+          font-size: 20px;
+        }
+        h3 {
+          margin: 0;
+          font-size: 12px;
+          font-style: italic;
+          color: $gray;
+        }
+      }
+
+      .description {
+        flex-basis: calc(100% - 100px);
+        flex-wrap: wrap;
+        display: flex;
+        padding-left: 10px;
+      }
     }
     &:nth-child(even) .task-container {
       background-color: #f9f8f8
@@ -68,8 +112,15 @@
 
     form {
       width: 100%;
+      .task-container {
+        padding-bottom: 60px;
+        position: relative;
+      }
+
       button {
-        float: right;
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
       }
     }
 

@@ -3,29 +3,49 @@
       <ng-container *ngFor="let task of todoList">
         <li mwlDraggable [dropData]="task" (dragEnd)="elementRotation = 0" (dragging)="dragging($event, task.id)" >
           <div class="task-container"  [style.transform]="getRotation(task.id)">
-            <h1 >{{task.data.name}}</h1>
-            <label class="checkbox">
-              <input type="checkbox" [(ngModel)]="task.data.done" (change)="updateTask(task)"/>
-              <i class="fa fa-check"></i>
-            </label>
-            <p>{{task.data.description}}</p>
+            <div class="date">
+              <h2>{{ task.data.dueDate | date: 'dd MMM'}} </h2>
+              <h3>{{ getDayDifference(task.data.dueDate) }} </h3>
+            </div>
+            <div class="description">
+              <h1 >{{ task.data.name }}</h1>
+              <label class="checkbox">
+                <input type="checkbox" [(ngModel)]="task.data.done" (change)="updateTask(task)"/>
+                <i class="fa fa-check"></i>
+              </label>
+              <p>{{ task.data.description }} </p>
+            </div>
           </div>
         </li>
       </ng-container>
-      <li>
+      <li><form [formGroup]="form">
         <div class="task-container">
-          <form [formGroup]="form">
-            <h1>
-              <input formControlName="name" placeholder="Enter new task title...">
-            </h1>
-            <p><textarea formControlName="description" placeholder="Enter description..."></textarea>
-            </p>
+            <div class="date">
+              <ng-container *ngIf="date">
+                <h2>{{ date | date : 'dd MMM'}}</h2>
+              </ng-container>
+              <ng-container *ngIf="date === undefined">
+                <h2>-- ---</h2>
+              </ng-container>
+
+
+              <h3>{{ getDayDifference(date) }}</h3>
+              <angular2-date-picker ngDefaultControl  [(ngModel)]="date" [ngModelOptions]="{standalone: true}" [settings]="settings"></angular2-date-picker>
+            </div>
+            <div class="description">
+              <h1>
+                <input formControlName="name" placeholder="Enter new task title...">
+              </h1>
+              <p><textarea formControlName="description" placeholder="Enter description..."></textarea>
+              </p>
+            </div>
             <button type="button" [disabled]="!form.valid" (click)="addTask()">Dodaj</button>
-          </form>
         </div>
+      </form>
       </li>
     </ul>
 </section>
+
 <div class="loader" *ngIf="loading"></div>
 
 <div class="droppable-area-right" mwlDroppable (drop)="removeTask($event)"></div>

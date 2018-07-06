@@ -9,6 +9,8 @@ import {environment} from '../environments/environment';
 import {AngularFirestore, AngularFirestoreModule} from 'angularfire2/firestore';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DragAndDropModule} from 'angular-draggable-droppable';
+import {DlDateTimePickerDateModule} from 'angular-bootstrap-datetimepicker';
+import {AngularDateTimePickerModule} from 'angular2-datetimepicker';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import {DragAndDropModule} from 'angular-draggable-droppable';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-
+    FormsModule,
+    AngularDateTimePickerModule
   ],
-  providers: [],
+  providers: [FormsModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

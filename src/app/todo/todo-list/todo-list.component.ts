@@ -14,6 +14,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   loading = true;
   elementRotation: number;
   draggedTaskId: string;
+  settings: any;
+  date: Date;
   constructor(private todoService: TodoService, private fb: FormBuilder, private sanitizer: DomSanitizer) {
 
   }
@@ -21,9 +23,12 @@ export class TodoListComponent implements OnInit, OnDestroy {
   addTask() {
 
     if (this.form.valid) {
-      this.todoService.addTask(this.form.value).then(() => {
+      const data = this.form.value;
+      data.dueDate = this.date;
+      this.todoService.addTask(data).then(() => {
         this.form.get('name').patchValue('');
         this.form.get('description').patchValue('');
+        this.date = undefined;
       });
     }
   }
@@ -54,19 +59,41 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   }
 
+  getDayDifference(taskDate) {
+    if (taskDate) {
+      const date = new Date(taskDate);
+      const currentDate = new Date();
+      const timeDiff = date.getTime() - currentDate.getTime();
+      const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      if (daysDiff >= 0) {
+        return daysDiff + ' days left';
+      } else {
+        return 'Time is over!';
+      }
+    }
+  }
+
   ngOnInit() {
 
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       done: [false],
-      description: ['']
+      description: [''],
     });
 
     this.todoService.getList().subscribe( next => {
       this.todoList = next;
+
       this.loading = false;
 
     });
+
+    this.settings = {
+      timePicker: true,
+      format: '',
+      bigBanner: true,
+      closeOnSelect: true
+    };
   }
 
   ngOnDestroy() {

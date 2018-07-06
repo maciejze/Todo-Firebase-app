@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
-import {TodoList} from './todoList';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -29,10 +28,12 @@ export class TodoService {
   }
 
   addTask(task: Task) {
+    console.log(task);
     return this.todoList.add({
       name: task.name,
       done: task.done,
-      description: task.description
+      description: task.description,
+      dueDate: task.dueDate
     });
   }
 

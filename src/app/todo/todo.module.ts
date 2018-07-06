@@ -9,6 +9,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {SharedModule} from '../shared/shared.module';
+import {DlDateTimePickerDateModule} from 'angular-bootstrap-datetimepicker';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import {SharedModule} from '../shared/shared.module';
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     TodoService
