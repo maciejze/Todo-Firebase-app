@@ -107,7 +107,7 @@
       }
     }
     &:nth-child(even) .task-container {
-      background-color: #f9f8f8
+      background-color: $very-light-gray;
     }
 
     form {

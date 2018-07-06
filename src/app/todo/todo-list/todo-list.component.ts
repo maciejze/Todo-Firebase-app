@@ -91,7 +91,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.settings = {
       timePicker: true,
       format: '',
-      bigBanner: true,
+      bigBanner: false,
       closeOnSelect: true
     };
   }

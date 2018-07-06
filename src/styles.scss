@@ -96,5 +96,66 @@ button {
 
     }
   }
+  .year-dropdown, .month-year {
+    color: white !important;
+
+  }
+
+  .wc-details, .year-title {
+    background-color: $gray !important;
+    font-weight: 600 !important;
+
+    & i {
+      color: white !important
+    }
+  }
+
+  .calendar-header-day {
+    font-weight: 600 !important;
+  }
+
+  .calendar-day span {
+    font-weight: 300 !important;
+  }
+
+  .today span {
+    border: 1px solid $gray !important;
+    border-radius: 50%;
+  }
+
+  .calendar-day:hover span, .selected-day span {
+    border: none !important;
+    background-color: $silver !important;
+    color: $black !important;
+    font-weight: 600 !important;
+    border-radius: 50%;
+  }
+
+  .cal-util {
+    .ok {
+      font-weight: 600 !important;
+      color: $black !important;
+
+    }
+
+    .fa {
+      display: none !important;
+    }
+  }
+
+  .years-list-view, .months-view {
+
+    span {
+      font-weight: 300  !important;
+    }
+
+    span.current-year, span.current-month, span:hover  {
+      color: $black  !important;
+      font-weight: 600  !important;
+      background-color: $silver !important;
+      border-radius: 50% !important;
+    }
+
+  }
 
 }
