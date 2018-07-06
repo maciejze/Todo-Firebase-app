@@ -39,7 +39,7 @@
               <p><textarea formControlName="description" placeholder="Enter description..."></textarea>
               </p>
             </div>
-            <button type="button" [disabled]="!form.valid" (click)="addTask()">Dodaj</button>
+            <button type="button" [disabled]="!form.valid || date === undefined" (click)="addTask()">Dodaj</button>
         </div>
       </form>
       </li>
